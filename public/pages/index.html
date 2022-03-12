@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>目录页</title>
+    <style>
+        body {
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/javascript">
+        (function () {
+            var winWidth = window.innerWidth || document.body.clientWidth;
+            var winHeight = window.innerHeight || document.body.clientHeight;
+            var size = winWidth / 750.0;
+            document.documentElement.style.fontSize = size * 100 + "px";
+        })()
+        window.addEventListener('resize', function () {
+            var winWidth = window.innerWidth || document.body.clientWidth;
+            var winHeight = window.innerHeight || document.body.clientHeight;
+            var size = winWidth / 750.0;
+            console.log('resize', (size * 100 + 'px'));
+            document.documentElement.style.fontSize = size * 100 + "px";
+        })
+    </script>
+</body>
+</html>
