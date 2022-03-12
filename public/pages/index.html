@@ -25,7 +25,6 @@
             var winWidth = window.innerWidth || document.body.clientWidth;
             var winHeight = window.innerHeight || document.body.clientHeight;
             var size = (winWidth / winHeight) < (1920 / 1080) ? (winWidth / 1920) : (winHeight / 1080);
-            console.log('resize', (size * 100 + 'px'));
             document.documentElement.style.fontSize = size * 100 + "px";
         })
     </script>
