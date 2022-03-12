@@ -108,6 +108,11 @@ module.exports = {
                 to: './',
                 ignore: ['.*'],
             },
+            {
+                from: resolve(process.cwd(), 'public/favicon.ico'),
+                to: './',
+                ignore: ['.*'],
+            },
         ]),
     ],
     optimization: {
