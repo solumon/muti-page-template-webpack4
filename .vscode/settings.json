@@ -1,13 +1,11 @@
 {
-    "editor.codeActionsOnSave": {
-        "source.fixAll": true,
-        "source.fixAll.eslint": true,
-        "source.fixAll.stylelint": true
-    },
+    /// ESLint
     "eslint.validate": [
         "javascript",
         "vue"
     ],
+    /// ------------
+    /// Stylelint
     "css.validate": false,
     "less.validate": false,
     "scss.validate": false,
@@ -16,8 +14,18 @@
         "scss",
         "vue"
     ],
+    /// ------------
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+        "source.fixAll.eslint": true,
+        "source.fixAll.stylelint": true
+    },
     "cSpell.words": [
         "stylelint",
-        "purifycss"
+        "purifycss",
+        "filesize",
+        "echarts",
+        "videojs",
+        "flipui"
     ]
 }
