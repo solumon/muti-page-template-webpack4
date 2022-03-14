@@ -1,0 +1,23 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+        "source.fixAll.eslint": true,
+        "source.fixAll.stylelint": true
+    },
+    "eslint.validate": [
+        "javascript",
+        "vue"
+    ],
+    "css.validate": false,
+    "less.validate": false,
+    "scss.validate": false,
+    "stylelint.validate": [
+        "css", 
+        "scss",
+        "vue"
+    ],
+    "cSpell.words": [
+        "stylelint",
+        "purifycss"
+    ]
+}
