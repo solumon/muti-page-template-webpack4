@@ -12,6 +12,9 @@ module.exports = {
         "plugin:vue/recommended",
         "plugin:import/recommended",
     ],
+    globals: {
+        "IS_SERVICE": false
+    },
     // 解析器配置
     parserOptions: {
         ecmaVersion: 2018,        // es6版本

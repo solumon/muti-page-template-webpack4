@@ -1,7 +1,7 @@
 const { resolve } = require('path');
 const merge = require('webpack-merge');
 const sass = require('sass');
-const webpack = require('webpack');
+const { DefinePlugin } = require('webpack');
 const address = require('address');
 const base = require('../webpack.config');
 
@@ -40,7 +40,7 @@ const result = merge(base, {
         ],
     },
     plugins: [
-        new webpack.DefinePlugin({
+        new DefinePlugin({
             IS_SERVICE: true,
         }),
     ],
