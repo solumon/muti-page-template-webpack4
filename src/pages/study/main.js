@@ -3,9 +3,7 @@ import { Application, Flipbook, Logger } from '@up366/u3-flip-sdk';
 import App from './App.vue';
 import 'normalize.css/normalize.css';
 import router from '@/pages/study/router';
-// eslint-disable-next-line import/extensions
 import { versionJudgment } from '@/utils/util';
-// eslint-disable-next-line import/extensions
 import LoadFile from '@/utils/loadFile';
 
 const MIN_VERSION = {
@@ -19,15 +17,13 @@ if (window.jsBridgeObj) { // 客户端学习页宿主环境下
         const {
             client, versions, os,
         } = data;
-        let isSupport;
         let minVersion;
         if (client === 'TEACHER') {
             minVersion = MIN_VERSION.TEACHER;
-            isSupport = versionJudgment(versions, MIN_VERSION.TEACHER);
         } else {
             minVersion = MIN_VERSION.STUDENT;
-            isSupport = versionJudgment(versions, MIN_VERSION.STUDENT);
         }
+        const isSupport = versionJudgment(versions, minVersion);
         if (!isSupport) {
             logger.info(`需要v${minVersion}客户端，请升级`);
             return;
@@ -41,8 +37,7 @@ if (window.jsBridgeObj) { // 客户端学习页宿主环境下
         const version = Date.now();
         const loadFile = new LoadFile();
         let url;
-        // eslint-disable-next-line no-undef
-        if (IS_SERVICE) {
+        if (process.env.IS_SERVICE) {
             const bookInfo = await Flipbook.getBookInfo();
             const { bookId } = bookInfo;
             url = `http://book.up366.cn/upload/zipfile/${os === 'PC' ? 'Pc' : 'Mobile'}/${bookId}/${pagePath}/page1.js?${version}`;

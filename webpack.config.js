@@ -7,7 +7,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const data = (() => {
-    const files = glob.sync('src/pages/*/main.js');
+    const files = glob.sync('src/pages/*/main.{js|ts}');
     const entry = {};
     const pages = [];
     files.forEach((item) => {
@@ -35,29 +35,22 @@ module.exports = {
             // js
             {
                 test: /\.(jsx?)$/,
-                use: [{
-                    loader: 'babel-loader',
-                    options: {
-                        cacheDirectory: true,
-                        presets: [
-                            [
-                                '@babel/preset-env',
-                            ],
-                        ],
-                        plugins: [
-                            [
-                                '@babel/plugin-transform-runtime',
-                                {
-                                    corejs: 3,
-                                },
-                            ],
-                            [
-                                'syntax-dynamic-import',
-                            ],
-                        ],
-                    },
-                }],
+                use: ['babel-loader'],
                 include: /[\\/]src[\\/]/, // 不检查node_modules下的js文件
+            },
+            {
+                test: /\.ts$/,
+                use: [
+                    'babel-loader',
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            appendTsSuffixTo: [
+                                '\\.vue$',
+                            ],
+                        },
+                    },
+                ],
             },
             // image
             {
@@ -182,8 +175,8 @@ module.exports = {
     },
     resolve: {
         alias: {
-            vue$: 'vue/dist/vue.esm.js',
             '@': resolve(process.cwd(), 'src'),
+            vue$: 'vue/dist/vue.esm.js',
         },
         extensions: ['.js', '.vue', '.json'],
     },

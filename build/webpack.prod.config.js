@@ -1,12 +1,12 @@
 const fs = require('fs');
 const { resolve } = require('path');
-const webpack = require('webpack');
+const { DefinePlugin } = require('webpack');
 const merge = require('webpack-merge');
 const ZipPlugin = require('zip-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const sass = require('sass');
-const { name: BookName, version: Version } = require('../package.json');
+const { name, version } = require('../package.json');
 const base = require('../webpack.config');
 
 const {
@@ -24,8 +24,7 @@ const getCommitId = () => {
     }
     const gitHEAD = fs.readFileSync(path, 'utf-8').trim();
     const ref = gitHEAD.split(': ')[1];
-    console.log('ref',ref);
-    let commitId = '';
+    let commitId;
     if (ref) {
         commitId = fs.readFileSync(resolve(process.cwd(), `.git/${ref}`), 'utf-8').trim().substr(0, 8);
     } else {
@@ -64,7 +63,7 @@ const result = merge(base, {
         ],
     },
     plugins: [
-        new webpack.DefinePlugin({
+        new DefinePlugin({
             IS_SERVICE: false,
         }),
         new TerserJSPlugin({
@@ -72,7 +71,7 @@ const result = merge(base, {
             cache: true,
         }),
         new ZipPlugin({
-            filename: `${BookName}_${Version}_${getCommitId()}.zip`,
+            filename: `${name}_${version}_${getCommitId()}.zip`,
         }),
         new MiniCssExtractPlugin(),
     ],
