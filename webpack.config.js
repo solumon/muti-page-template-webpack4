@@ -7,7 +7,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const data = (() => {
-    const files = glob.sync('src/pages/*/main.{js|ts}');
+    const files = glob.sync('src/pages/*/main.js');
     const entry = {};
     const pages = [];
     files.forEach((item) => {
